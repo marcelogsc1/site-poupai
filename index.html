@@ -154,7 +154,17 @@ footer{background:var(--brown);padding:38px 5%;display:flex;align-items:center;j
 .modal-hint strong{color:var(--brown)}
 .modal-close{background:none;border:1.5px solid rgba(107,66,38,.22);color:var(--text-soft);padding:11px 28px;border-radius:50px;font-size:.88rem;font-weight:500;cursor:pointer;transition:all .2s;font-family:'Sora',sans-serif}
 .modal-close:hover{border-color:var(--orange);color:var(--orange-dark)}
-@media(max-width:960px){.hero{grid-template-columns:1fr;text-align:center;padding-top:100px;gap:40px}.hero-sub{margin:0 auto 38px}.hero-ctas{justify-content:center}.hero-visual{order:-1}.tag-left,.tag-right{display:none}.features-grid{grid-template-columns:1fr}.steps{grid-template-columns:1fr 1fr}.steps::before{display:none}.pricing-cards{grid-template-columns:1fr;max-width:400px}nav ul{display:none}}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px;margin-left:8px}
+.hamburger span{display:block;width:22px;height:2px;background:var(--brown);border-radius:2px;transition:all 0.3s}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-menu{display:none;position:fixed;top:62px;left:0;right:0;background:rgba(253,246,239,0.97);backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,155,93,0.15);z-index:99;padding:16px 5%;flex-direction:column;gap:4px}
+.mobile-menu.open{display:flex}
+.mobile-menu a{text-decoration:none;color:var(--text-soft);font-size:1rem;font-weight:500;padding:12px 0;border-bottom:1px solid rgba(255,155,93,0.1);transition:color 0.2s}
+.mobile-menu a:last-child{border-bottom:none}
+.mobile-menu a:hover{color:var(--orange-dark)}
+@media(max-width:960px){.hero{grid-template-columns:1fr;text-align:center;padding-top:100px;gap:40px}.hero-sub{margin:0 auto 38px}.hero-ctas{justify-content:center}.tag-left,.tag-right{display:none}.features-grid{grid-template-columns:1fr}.steps{grid-template-columns:1fr 1fr}.steps::before{display:none}.pricing-cards{grid-template-columns:1fr;max-width:400px}.nav-links{display:none}.hamburger{display:flex}}
 </style>
 </head>
 <body>
@@ -176,6 +186,13 @@ footer{background:var(--brown);padding:38px 5%;display:flex;align-items:center;j
   </div>
 </div>
 
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#funcionalidades" onclick="closeMobileMenu()">Funcionalidades</a>
+  <a href="#como-funciona" onclick="closeMobileMenu()">Como funciona</a>
+  <a href="#planos" onclick="closeMobileMenu()">Planos</a>
+  <a href="https://web.poupai-app.com.br">Começar agora</a>
+</div>
+
 <nav>
   <a href="#" class="nav-logo">
     <img src="data:image/jpeg;base64,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" alt="PoupAí logo">
@@ -187,6 +204,9 @@ footer{background:var(--brown);padding:38px 5%;display:flex;align-items:center;j
     <li><a href="#planos">Planos</a></li>
     <li><a href="https://web.poupai-app.com.br" class="btn-nav">Começar agora</a></li>
   </ul>
+  <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <div class="hero-full">
@@ -307,6 +327,24 @@ function closeModal(){document.getElementById('modal').classList.remove('active'
 document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeModal()});
 const observer=new IntersectionObserver(entries=>{entries.forEach(el=>{if(el.isIntersecting){const t=el.target,delay=t.dataset.delay||0;setTimeout(()=>t.classList.add('visible'),Number(delay));observer.unobserve(t)}})},{threshold:.1});
 document.querySelectorAll('.feature-card-wrap,.step,.pricing-card').forEach((el,i)=>{el.dataset.delay=(i%3)*120;observer.observe(el)});
+
+function toggleMobileMenu(){
+  var menu=document.getElementById('mobileMenu');
+  var btn=document.getElementById('hamburger');
+  menu.classList.toggle('open');
+  btn.classList.toggle('open');
+}
+function closeMobileMenu(){
+  document.getElementById('mobileMenu').classList.remove('open');
+  document.getElementById('hamburger').classList.remove('open');
+}
+document.addEventListener('click',function(e){
+  var menu=document.getElementById('mobileMenu');
+  var btn=document.getElementById('hamburger');
+  if(menu&&btn&&menu.classList.contains('open')&&!menu.contains(e.target)&&!btn.contains(e.target)){
+    closeMobileMenu();
+  }
+});
 </script>
 </body>
 </html>
